@@ -1,0 +1,37 @@
+1.Write an SQL query to display each product name along with the total number of times it appears in the product table?
+Ans - SELECT product_name,count(*) FROM shob.product group by product_name;
+
+2.Display product name and vendor name where vendor name belongs to Alpha and Beta?
+Ans - SELECT product_name,vendor_name from shob.product where vendor_name in ('Alpha','Beta');
+
+3.Write an SQL query to display each product name along with the total number of purchase years recorded from the product table?
+Ans - SELECT product_name,count(purshase_year) from shob.product group by product_name;
+
+4.Display product id,name and cost where product cost is greater than 50000?
+Ans - SELECT product_id,product_name,product_cost from shob.product where product_cost > '50000';
+
+5.Display all the products wwhere vendor name should be reflect in ascending order?
+Ans - SELECT * from shob.product order by vendor_name ASC ;
+
+6.Display all the products where vendor name and product name should be reflect in ascending order?
+Ans - SELECT * from shob.product order by vendor_name AND product_name ASC;
+
+7.Display all the products wwhere vendor name should be reflect in Descending order?
+
+Ans - SELECT * from shob.product order by vendor_name DESC;
+
+8.Display the product name,vendor name and product id where product is less than 50000?
+Ans - SELECT product_name,vendor_name,product_id from shob.product where product_cost <=50000 ;
+
+9. Display the product name,vendor name and product id where product is greater than 50000 and product name should reflect in ascending order?
+Ans - SELECT product_name,product_serialnum from shob.product where product_cost >= 50000 order by product_name ASC;
+
+10. Display the product name and product serialnumber where purchase year in 2020 to 2015? 
+Ans - SELECT product_name,product_serialnum from shob.product where purshase_year in (2020,2015);
+
+11. Display each product name along with the purchase year and the total sum of product costs for that product in that year from the product table?
+Ans - SELECT product_name,purshase_year,sum(product_cost) from shob.product group by product_name,purshase_year ;
+
+12. display each product name along with the purchase year and the total product cost, sorted first by product name and then by purchase year in ascending order?
+Ans - SELECT product_name,purshase_year,sum(product_cost) from shob.product group by product_name,purshase_year order by product_name,purshase_year ASC;
+
