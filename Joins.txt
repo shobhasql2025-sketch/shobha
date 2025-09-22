@@ -1,0 +1,72 @@
+table1 - orders
+
+CREATE TABLE shob.orders (
+  order_id INT NOT NULL,
+  customer_id INT NOT NULL,
+  orderdate INT NULL,
+  shipment_id INT NULL,
+  PRIMARY KEY (order_id, customer_id));
+
+INSERT INTO shob.orders (order_id, customer_id, orderdate, shipment_id) VALUES ('1025', '4', '2015-05-12', '32451');
+INSERT INTO shob.orders (order_id, customer_id, orderdate, shipment_id) VALUES ('1029', '9', '2013-09-15', '21356');
+INSERT INTO shob.orders (order_id, customer_id, orderdate, shipment_id) VALUES ('1039', '5', '2017-05-20', '87532');
+INSERT INTO shob.orders (order_id, customer_id, orderdate, shipment_id) VALUES ('1098', '7', '2020-02-13', '45378');
+INSERT INTO shob.orders (order_id, customer_id, orderdate, shipment_id) VALUES ('1126', '3', '2010-04-27', '23751');
+INSERT INTO shob.orders (order_id, customer_id, orderdate, shipment_id) VALUES ('1129', '6', '2019-06-28', '87231');
+INSERT INTO shob.orders (order_id, customer_id, orderdate, shipment_id) VALUES ('1132', '12', '2025-02-19', '21098');
+INSERT INTO shob.orders (order_id, customer_id, orderdate, shipment_id) VALUES ('1166', '11', '2024-10-11', '90823');
+
+Table2 - customers
+
+CREATE TABLE shob.customers (
+  customer_id INT NOT NULL,
+  customer_name VARCHAR(50) NULL,
+  customer_mobilenum INT NULL,
+  customer_address VARCHAR(200) NULL,
+  customer_pincode INT NULL,
+  PRIMARY KEY (customer_id));
+
+INSERT INTO shob.customers (customer_id, customer_name, customer_mobilenum, customer_address, customer_pincode) VALUES ('2', 'nobita', '2345671', 'btm', '219087');
+INSERT INTO shob.customers (customer_id, customer_name, customer_mobilenum, customer_address, customer_pincode) VALUES ('4', 'stlla', '6677889', 'jpnagar', '310987');
+INSERT INTO shob.customers (customer_id, customer_name, customer_mobilenum, customer_address, customer_pincode) VALUES ('1', 'tom', '2233778', 'kollar', '540089');
+INSERT INTO shob.customers (customer_id, customer_name, customer_mobilenum, customer_address, customer_pincode) VALUES ('8', 'jerry', '4455669', 'kgf', '542200');
+INSERT INTO shob.customers (customer_id, customer_name, customer_mobilenum, customer_address, customer_pincode) VALUES ('11', 'bella', '1199884', 'mgroad', '230089');
+INSERT INTO shob.customers (customer_id, customer_name, customer_mobilenum, customer_address, customer_pincode) VALUES ('5', 'james', '9980011', 'sahakarnagar', '560021');
+INSERT INTO shob.customers (customer_id, customer_name, customer_mobilenum, customer_address, customer_pincode) VALUES ('6', 'sanny', '9844212', 'hebbal', '540056');
+INSERT INTO shob.customers (customer_id, customer_name, customer_mobilenum, customer_address, customer_pincode) VALUES ('15', 'nikil', '6890123', 'electraniccity', '450098');
+INSERT INTO shob.customers (customer_id, customer_name, customer_mobilenum, customer_address, customer_pincode) VALUES ('12', 'sunil', '9986543', 'sanjaynagar', '237895');
+INSERT INTO shob.customers (customer_id, customer_name, customer_mobilenum, customer_address, customer_pincode) VALUES ('17', 'vishal', '8944332', 'contornment', '110033');
+INSERT INTO shob.customers (customer_id, customer_name, customer_mobilenum, customer_address, customer_pincode) VALUES ('20', 'bunny', '7856431', 'hsrlayout', '112367');
+INSERT INTO shob.customers (customer_id, customer_name, customer_mobilenum, customer_address, customer_pincode) VALUES ('19', 'kumar', '6660099', 'madiwala', '341189');
+
+
+Syntax:1
+1.SELECT customers.customer_id,customers.customer_name from shob.customers inner join shob.orders on  
+customers.customer_id = orders.customer_id;
+
+2.SELECT customers.customer_id,customers.customer_name from shob.customers Left join shob.orders on
+customers.customer_id = orders.customer_id;
+
+3.SELECT customers.customer_id,customers.customer_name from shob.customers Right join shob.orders on
+customers.customer_id = orders.customer_id;
+
+Syntax:2
+1.SELECT customers.customer_id,customers.customer_name,orders.orderdate from shob.customers left join shob.orders on customers.customer_id = orders.order_id;
+2.SELECT customers.customer_id,customers.customer_name,orders.orderdate from shob.customers Right join shob.orders on customers.customer_id = orders.order_id;
+3.SELECT customers.customer_id,customers.customer_name,orders.orderdate from shob.customers inner join shob.orders on customers.customer_id = orders.order_id
+UNION
+SELECT customers.customer_id,customers.customer_name,orders.orderdate from shob.customers left join shob.orders on customers.customer_id = orders.order_id;
+
+Syntax:3
+1.SELECT customers.customer_name from shob.customers inner join shob.orders on customers.customer_id = orders.customer_id where order_id = '1025';
+
+2.SELECT customers.customer_name,customers.customer_address from shob.customers left join shob.orders on customers.customer_id = orders.order_id order by customers.customer_name ASC,customers.customer_address ASC;
+
+3.SELECT customers.customer_name,customers.customer_address from shob.customers left join shob.orders on customers.customer_id = orders.order_id order by customers.customer_name ASC,customers.customer_address ASC;
+
+
+
+
+
+
+
