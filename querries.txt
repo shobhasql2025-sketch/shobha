@@ -1,0 +1,135 @@
+student table:
+
+USE data;
+create table students1 (
+student_id int,
+student_name varchar(100),
+student_mblnum int,
+student_address varchar(500),
+student_section varchar(40)
+);
+insert into students1(student_id,student_name,student_mblnum,student_address,student_section)values(1,'sho',12345,'btm','a'),
+(2,'bunny',324567,'indranagar','b'),
+(3,'john',897650,'hsrlayout','a'),
+(4,'jerry',987732,'hebbal','c'),
+(5,'tom',998753,'kgf','b'),
+(6,'clary',67899,'hoskote','a'),
+(7,'rohan',998123,'tpt','b'),
+(8,'anr',998020,'hyderabad','c'),
+(9,'manoj',456839,'vizag','a'),
+(10,'mohan',78653,'chennai','b');
+select * from students1;
+
+1.show the student table?
+Ans . select * from students1;
+
+2.Display the studentname and mobilenumber from student table?
+Ans. select student_name,student_mblnum from students1;
+
+Orders table:
+
+USE data;
+create table orders(
+order_id int(5) primary key,
+order_name varchar(40),
+date int(15),
+amount int(100)
+);
+insert into orders(order_id,order_name,date,amount)values(1,'john',2020-12-25,20000),
+(2,'sunny',2025-11-23,50000),
+(3,'bunny',2019-09-15,25000),
+(4,'junnu',2015-05-25,60000),
+(5,'appu',2017-09-18,40000),
+(6,'nikki',2014-04-12,65000),
+(7,'siddu',2020-02-19,55000),
+(8,'stlla',2013-01-11,40000),
+(9,'bella',2011-06-16,80000),
+(10,'muni',2015-05-24,70000);
+
+1.display the name and amount where amount is greater than 50000?
+Ans - Select order_name,amount from data.orders where amount >= 50000;
+
+2.display the order details from the order table?
+Ans - select * from data.orders
+
+3.Display the order details from the order table where order name should be display in ascending order?
+Ans - select * from data.orders order by order_name ASC;
+
+4.Display the order details from the order table where order name should be display in decending order?
+Ans - select * from data.orders order by order_name DESC;
+
+5.Display the order details from the order table where order name ends with 'nny'?
+Ans - select * from data.orders where order_name like '%nny';
+
+6.write a querry to display all the order details where the order date is between 1990 to 1995?
+Ans - select * from data.orders where date between 1990 AND 1995;
+
+7.Write an SQL query to find the total number of orders and the total sales amount from the orders table for the year 1990?
+Ans -select count(order_name),sum(amount) from data.orders where date = 1990 ;
+
+employee table :
+
+USE data;
+create table employee (
+emp_id int primary key,
+emp_name varchar(50),
+emp_mblnum int(15),
+emp_bgroup varchar(40),
+emp_address varchar(200)
+);
+insert into employee(emp_id,emp_name,emp_mblnum,emp_bgroup,emp_address)values
+(1,'john',123456,'a+','btm'),
+(2,'munna',23456,'o+','hsr'),
+(3,'bunny',34215,'o+','indrabagar'),
+(4,'sunny',89764,'b+','hebbal'),
+(5,'don',99865,'b+','sahakar'),
+(6,'ankith',809076,'a+','yelahanka'),
+(7,'nikki',786549,'b+','nagwara'),
+(8,'junnu',995544,'ab+','hebbal'),
+(9,'sanju',988067,'a+','sanjaynagar'),
+(10,'sri',882310,'o+','btm');
+
+1.Display all the employee details from the employee table?
+Ans.select * from employee;
+
+2.How many employees have the blood group B+?
+Ans - select emp_bgroup,count(*) from employee where emp_bgroup='b+' group by emp_bgroup;
+
+3.Display all the employee details from the employee table where emp blood group b+ and address is hebbal?
+Ans - select * from employee where emp_bgroup = 'b+' AND emp_address = 'hebbal';
+
+4.Display all the employee details from the employee table where emp blood group b+ or address is hebbal?
+Ans - select * from employee where emp_bgroup = 'b+' OR emp_address = 'hebbal';
+
+joins :
+
+
+USE data;
+create table customer(
+customer_id int primary key,
+customer_name varchar(50),
+customer_address varchar(100),
+customer_mblnum int primary key,
+foreign key (customer_id) references orders(customer_id)
+);
+insert into customer(customer_id,customer_name,customer_address,customer_mblnum)values
+(980,'sho','prg',99804217),
+(754,'suma','hyd',98354278);
+
+1.select customer_name,customer_mblnum from customer inner join orders on customer.customer_id = orders.customer_id;
+
+error code - 11:20:06	insert into customer(customer_id,customer_name,customer_address,customer_mblnum)values (980,'sho','prg',99804217), (754,'suma','hyd',98354278)	Error Code: 1452. Cannot add or update a child row: a foreign key constraint fails (`data`.`customer`, CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `orders` (`customer_id`))	0.032 sec
+
+After inserting matching values rows got returned.
+
+2.select customer_name,customer_mblnum from customer right join orders on customer.customer_id = orders.customer_id;
+
+3.select customer_name,customer_mblnum from customer Left join orders on customer.customer_id = orders.customer_id;
+
+4.select customer_name,customer_mblnum from customer Left join orders on customer.customer_id = orders.customer_id
+UNION
+select customer_name,customer_mblnum from customer right join orders on customer.customer_id = orders.customer_id
+
+
+
+
